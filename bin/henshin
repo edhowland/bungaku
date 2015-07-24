@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# henshin - cli tool to process MDSL files
+
+require 'optparse'
+require_relative '../lib/mdgen'
+
+parser = OptionParser.new do |opts|
+  opts.banner  = 'Henshin - Convert .mdsl to .md'
+#  opts.banner =banner
+      opts.separator ""
+  opts.on('-h', '--help', 'Displays this help') do
+    puts opts
+  exit
+  end
+
+  opts.on('-v', '--version', 'Display version tag.') do
+    puts 'mdgen v0.1'
+  exit
+  end
+end
+
+parser.parse!
+
+contents = File.read ARGV.first
+g = MdGen.new
+r = GfmRender.new
+
+output =   r.render(g.eval_string(contents))
+puts output
