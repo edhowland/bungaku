@@ -1,0 +1,14 @@
+# Rakefile for doc/ - builds .md from .mdsl using MdGen
+
+
+require '../lib/mdgen'
+
+task :default => [:deploy]
+
+file 'mdgen.md' => 'mdgen.mdsl' do
+  sh 'ruby mdgen.mdsl > mdgen.md'
+end
+
+task :deploy => 'mdgen.md' do
+  cp 'mdgen.md', '..'
+end
