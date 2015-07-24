@@ -2,7 +2,7 @@
 
 # execute the mdgen Ruby script from the sibling pdf_pipeline project
 def mdgen source, dest
-  sh "../../../pdf_pipeline/bin/mdgen #{source} > #{dest}"
+  sh "../../bin/henshin #{source} > #{dest}"
 end
 
 mdsl_files = FileList['*.mdsl']
