@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["edhowland"]
   spec.email         = ["ed.howland@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Henshin A templating Engine for Markdown}
+  spec.description   = %q{Henshin is an executable and library to transform files written in a Markdown DSL to Markdown, HTML or PDF}
+  spec.homepage      = "https://github.com/edhowland/henshin"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
