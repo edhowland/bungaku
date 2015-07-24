@@ -1,14 +1,8 @@
-# Rakefile for doc/ - builds .md from .mdsl using MdGen
+# Rakefile for doc/ - builds .md from .mdsl using henshin
 
+task :default => [:copy]
 
-require '../lib/mdgen'
-
-task :default => [:deploy]
-
-file 'mdgen.md' => 'mdgen.mdsl' do
-  sh 'ruby mdgen.mdsl > mdgen.md'
+task :copy do
+  cp 'README.md', '..'
 end
 
-task :deploy => 'mdgen.md' do
-  cp 'mdgen.md', '..'
-end
