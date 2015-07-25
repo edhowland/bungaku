@@ -2,6 +2,10 @@
 
 Ruby Markdown Templating Engine
 
+## Version
+
+0.1.0
+
 ## Abstract
 
 Henshin (Japanese for transform) is a Ruby library (and gem) for templating

@@ -1,7 +1,6 @@
 # pages_spec.rb - spec for adding pages
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 
 describe PageCounter do

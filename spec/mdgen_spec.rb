@@ -1,11 +1,17 @@
 # md_gen_spec.rb -  spec for MdGen
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 
 describe MdGen do
+  let(:gen) { MdGen.new }
   before { @m = MdGen.new }
+
+  describe 'empty' do
+    subject { gen.process { } }
+
+    specify { subject.must_equal [] }
+  end
 
   describe 'simple paragraph element' do
     before do
@@ -81,6 +87,12 @@ describe 'MdGen: complicated examples' do
     subject { gen.process { import 'header.mdsl' } }
 
   # specify { subject.must_equal [[:h6, 'Report']] }
+  end
+
+  describe 'eval_string : empty' do
+    subject { gen.eval_string '' }
+
+    specify { subject.must_equal []}
   end
 
   describe 'eval_string' do

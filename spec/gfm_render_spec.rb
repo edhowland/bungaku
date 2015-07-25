@@ -1,7 +1,6 @@
 # gfm_render_spec.rb - spec for GfmRender
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 describe GfmRender do
   before { @r = GfmRender.new }

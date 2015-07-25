@@ -1,6 +1,10 @@
 h1  'henshin'
 para 'Ruby Markdown Templating Engine'
 
+h2 'Version'
+
+para Henshin::VERSION
+
 h2 'Abstract'
 
 para <<-EOP

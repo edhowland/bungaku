@@ -1,7 +1,7 @@
 # integrate_parse_format_spec.rb - spec for both TextParse, TextFormat
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+
+require_relative 'spec_helper'
 
 describe 'Format a Parsed input string' do
   before do
