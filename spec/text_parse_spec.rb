@@ -1,8 +1,7 @@
 # text_parse_spec.rb - specs for TextParse
 
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 describe TextParse do
   before do

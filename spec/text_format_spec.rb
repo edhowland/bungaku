@@ -1,7 +1,8 @@
 # text_format_spec.rb  - spec for class TextFormat
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+
+require_relative 'spec_helper'
+
 
 describe TextFormat do
   before { @f = TextFormat.new }
