@@ -1,7 +1,6 @@
 # md_gen_spec.rb -  spec for MdGen
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 
 describe MdGen do
