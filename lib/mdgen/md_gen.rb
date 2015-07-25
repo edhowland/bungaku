@@ -14,6 +14,7 @@ def page *args, &blk
 
   def eval_string string
     self.instance_eval string
+    @codes
   end
 
   def process(&blk)
@@ -123,6 +124,7 @@ alias_method :numbers, :ordered_list
   def eval_string string
     @page_count = PageCounter.new.eval_string string
     self.instance_eval string
+    @codes
   end
 
   # process the block which contains the MDSL commads returning array of opcodes

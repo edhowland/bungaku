@@ -3,8 +3,6 @@
 
 require 'henshin'
 require 'optparse'
-# TODO replace this with just the henshin library
-require_relative '../lib/mdgen'
 
 parser = OptionParser.new do |opts|
   opts.banner  = 'Henshin - Convert .mdsl to .md'
