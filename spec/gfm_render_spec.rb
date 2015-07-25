@@ -1,7 +1,6 @@
 # gfm_render_spec.rb - spec for GfmRender
 
 require_relative 'spec_helper'
-#require '../lib/mdgen'
 
 describe GfmRender do
   before { @r = GfmRender.new }
