@@ -1,7 +1,7 @@
 # nested_headings_spec.rb - spec for markdownnested blocks
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+
+require_relative 'spec_helper'
 
 describe 'Nested Heading' do
   let(:gen) { MdGen.new }
