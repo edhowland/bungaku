@@ -1,17 +1,25 @@
 PATH
   remote: .
   specs:
-    henshin (0.1.0)
+    henshin (0.1.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    builder (3.2.2)
+    pdf-core (0.5.1)
+    prawn (2.0.1)
+      pdf-core (~> 0.5.1)
+      ttfunk (~> 1.4.0)
     rake (10.4.2)
+    ttfunk (1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  builder
   bundler (~> 1.9)
   henshin!
+  prawn
   rake (~> 10.0)
