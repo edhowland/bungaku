@@ -1,7 +1,6 @@
 # integrate_md_gen_render_spec.rb - spec to combine MdGen, GfmRender
 
-require '../lib/mdgen'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 describe 'Integration test: MdGen, GfmRender' do
   let(:gen) { MdGen.new }

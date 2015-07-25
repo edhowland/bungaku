@@ -1,7 +1,6 @@
 # pdf_rend_spec.rb -  spec for PdfRend
 
-require '../lib/pdfrend'
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
 describe PdfRend do
     after { FileUtils.rm_f 'test.pdf' }
