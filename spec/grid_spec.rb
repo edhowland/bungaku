@@ -1,8 +1,6 @@
 # grid_spec.rb - specs for method grid(rows, cols)
 
-require '../lib/support/grid'
-require 'minitest/autorun'
-
+require_relative 'spec_helper'
 
 describe 'enumerated_grid 4,4' do
   let(:grid4x4) { enumerated_grid(4,4) }
