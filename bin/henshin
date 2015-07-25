@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # henshin - cli tool to process MDSL files
 
-require 'henshin'
+require_relative  '../lib/henshin'
 require 'optparse'
 
 parser = OptionParser.new do |opts|
