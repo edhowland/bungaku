@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    henshin (0.1.1)
+    bungaku (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -20,6 +20,6 @@ PLATFORMS
 DEPENDENCIES
   builder
   bundler (~> 1.9)
-  henshin!
+  bungaku!
   prawn
   rake (~> 10.0)

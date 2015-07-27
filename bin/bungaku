@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
-# henshin - cli tool to process MDSL files
+# bungaku - cli tool to process MDSL files
 
-require_relative  '../lib/henshin'
+require_relative  '../lib/bungaku'
 require 'optparse'
 
 parser = OptionParser.new do |opts|
-  opts.banner  = 'Henshin - Convert .mdsl to .md'
+  opts.banner  = 'Bungaku - Convert .mdsl to .md'
       opts.separator ""
   opts.on('-r library', '--require library', String, 'Require library before running') do |library|
     require library
