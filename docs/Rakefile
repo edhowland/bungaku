@@ -1,4 +1,4 @@
-# Rakefile for doc/ - builds .md from .mdsl using henshin
+# Rakefile for doc/ - builds .md from .mdsl using Bungaku
 
 task :default => [:copy]
 

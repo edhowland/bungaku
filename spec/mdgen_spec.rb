@@ -10,7 +10,7 @@ describe MdGen do
   describe 'Reporting VERSION' do
     subject { gen.para Bungaku::VERSION }
 
-    specify { subject.must_equal [[:para, [[:t, '0.1.1']]]] }
+    specify { subject.length.must_equal 1 } # do not care what version is.
   end
 
   describe 'empty' do
