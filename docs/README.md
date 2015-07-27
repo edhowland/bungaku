@@ -1,14 +1,14 @@
-# henshin
+# Bungaku
 
 Ruby Markdown Templating Engine
 
 ## Version
 
-0.1.0
+0.1.1
 
 ## Abstract
 
-Henshin (Japanese for transform) is a Ruby library (and gem) for templating
+Bungaku (Japanese for Literature) is a Ruby library (and gem) for templating
 engine for creating Markdown and other formats, such as HTML and PDF.
 It follows the convention of an 'Outside-In' style of templating. Many other
 template engines are 'Inside-Out'. E.g. ERb is an example of one type.
@@ -19,16 +19,16 @@ content it embedded in. E.g. '<% a.ruby.method %>'.
 
 ### Outside-In Engines
 
-Henshin takes a differentapproach to templating. It is along the style of Builder:
+Bungaku takes a differ approach to templating. It is along the style of Builder:
 XmlMarkup::Builder).
-Henshin files are just regular Ruby programs. The content of a Henshin file
-contains the Henshin DSL in the stryle of Rake. There are methods for generating
+Bungaku files are just regular Ruby programs. The content of a Bungaku file
+contains the Bungaku DSL in the stryle of Rake. There are methods for generating
 most of the Markdown elements such as H1..H6, Links, Code, Bullets, Numbered lists, etc.
 In addition, it uses a Rake-like 'import' method to pull in other
 content.
 
 
-Let's look at Henshin code in action
+Let's look at Bungaku code in action
 
 ```
 h1 'A Header at level 1'
@@ -49,7 +49,7 @@ bullets 'Bullet 1', 'Bullet 2', 'Bullet 3'
 
 ## Ruby Syntax
 
-Since Henshin files are just Ruby, they can contain 
+Since Bungaku files are just Ruby, they can contain 
 other Ruby stuff as well. They can be syntax checked like regular Ruby .rb files.
 This is useful for programatically generating a lot of content
 One such use is dynamically generating links to other parts

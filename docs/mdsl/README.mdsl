@@ -3,7 +3,7 @@ para 'Ruby Markdown Templating Engine'
 
 h2 'Version'
 
-# para Bungaku:VERSION
+para Bungaku::VERSION
 
 h2 'Abstract'
 
