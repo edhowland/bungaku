@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Bungaku A templating Engine for Markdown}
   spec.description   = %q{Bungaku is an executable and library to transform files written in a Markdown DSL to Markdown, HTML or PDF}
-  spec.homepage      = "https://github.com/edhowland/henshin"
+  spec.homepage      = "https://github.com/edhowland/bungaku"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
