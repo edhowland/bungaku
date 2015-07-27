@@ -7,6 +7,12 @@ describe MdGen do
   let(:gen) { MdGen.new }
   before { @m = MdGen.new }
 
+  describe 'Reporting VERSION' do
+    subject { gen.para Bungaku::VERSION }
+
+    specify { subject.must_equal [[:para, [[:t, '0.1.1']]]] }
+  end
+
   describe 'empty' do
     subject { gen.process { } }
 
