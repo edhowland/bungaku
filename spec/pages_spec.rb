@@ -7,9 +7,21 @@ describe PageCounter do
   let(:counter) { PageCounter.new }
 
   describe 'should have 0 pages' do
-    subject { counter.process {} }
+    subject { c=counter; c.process {}; c }
 
-    specify { subject.must_equal 0 }
+    specify { subject.page_count.must_equal 0 }
+  end
+
+  describe 'with Bungaku::VERSION' do
+    subject { c=counter; c.process { para Bungaku::VERSION };  c }
+
+    specify { subject.page_count.must_equal 0 }
+  end
+
+  describe 'eval_string Bungaku::VERSION' do
+    subject { c=counter; c.eval_string 'para Bungaku::VERSION'; c }
+
+    specify { subject.page_count.must_equal 0 }
   end
 
 describe 'block with 2 page blocks' do

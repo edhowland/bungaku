@@ -1,8 +1,8 @@
 # Rakefile for MDSL to MD files
 
-# execute the mdgen Ruby script from the sibling pdf_pipeline project
-def mdgen source, dest
-  sh "../../bin/henshin #{source} > #{dest}"
+# execute the mdgen Ruby script from the bungaku in bin/
+def bungaku source, dest
+  sh "../../bin/bungaku #{source} > #{dest}"
 end
 
 mdsl_files = FileList['*.mdsl']
@@ -11,7 +11,7 @@ task :default => [:md]
 task :md => mdsl_files.ext('.md')
 
 rule '.md' => '.mdsl' do |t|
-  mdgen t.source, t.name
+  bungaku t.source, t.name
   cp t.name, '..'
 end
 
