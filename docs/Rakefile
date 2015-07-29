@@ -1,8 +1,18 @@
-# Rakefile for doc/ - builds .md from .mdsl using Bungaku
+# Rakefile for MDSL to MD files
 
-task :default => [:copy]
-
-task :copy do
-  cp 'README.md', '..'
+# execute the mdgen Ruby script from the bungaku in bin/
+def bungaku source, dest
+  sh "../bin/bungaku #{source} > #{dest}"
 end
+
+mdsl_files = FileList['*.mdsl']
+
+task :default => [:md]
+task :md => mdsl_files.ext('.md')
+
+rule '.md' => '.mdsl' do |t|
+  bungaku t.source, t.name
+  mv t.name, '..'
+end
+
 
