@@ -28,6 +28,13 @@ describe RenderPipeline do
     specify { subject.must_equal 2 }
   end
 
+  describe 'run with block' do
+    let(:runner) { p=pipe; p << ->(x) { x.call }; p }
+    subject { runner.run { 'x' } }
+
+    specify { subject.must_equal 'x' }
+  end
+
   describe 'run "AA BB CC"' do
     let(:runner) do
       p = pipe

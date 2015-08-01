@@ -1,8 +1,5 @@
 # mdgen.rb - MdGen class DSL to generate Markdown
 
-
-
-
 class MdGen < CodeCompiler
   class NestingTooDeep < RuntimeError
     def initialize
@@ -106,7 +103,7 @@ alias_method :numbers, :ordered_list
   # process the block which contains the MDSL commads returning array of opcodes
 def process(&blk)
     # count pages first
-    @page_count = PageCounter.new.process(&blk)
+#    @page_count = PageCounter.new.process(&blk)
     self.instance_exec &blk
     @codes
   end  

@@ -11,7 +11,8 @@ class RenderPipeline
     @pipeline << proc
   end
 
-  def run initial
+  def run initial=nil, &blk
+    initial = blk if block_given?
     @pipeline.reduce(initial) {|i, j| j.call(i) }
   end
 end
