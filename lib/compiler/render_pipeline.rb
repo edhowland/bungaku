@@ -10,4 +10,8 @@ class RenderPipeline
   def << proc
     @pipeline << proc
   end
+
+  def run initial
+    initial
+  end
 end
