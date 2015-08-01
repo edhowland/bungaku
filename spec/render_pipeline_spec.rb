@@ -27,4 +27,17 @@ describe RenderPipeline do
 
     specify { subject.must_equal 2 }
   end
+
+  describe 'run "AA BB CC"' do
+    let(:runner) do
+      p = pipe
+      p << ->(x) { x.split }
+      p << ->(x) { x.map {|e| e.downcase } }
+      p << ->(x) { x.join('-') }
+      p
+    end
+    subject { runner.run 'AA BB CC' }
+
+    specify { subject.must_equal 'aa-bb-cc' }
+  end
 end
