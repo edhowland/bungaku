@@ -20,4 +20,11 @@ describe RenderPipeline do
 
     specify { subject.must_equal 1 }
   end
+
+  describe 'run 1; returns 2' do
+    let(:runner) { p=pipe; p << ->(x) { x + 1 }; p }
+    subject { runner.run 1 }
+
+    specify { subject.must_equal 2 }
+  end
 end

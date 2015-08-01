@@ -12,6 +12,6 @@ class RenderPipeline
   end
 
   def run initial
-    initial
+    @pipeline.reduce(initial) {|i, j| j.call(i) }
   end
 end
