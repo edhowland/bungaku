@@ -4,13 +4,11 @@
 require_relative 'spec_helper'
 
 describe TextParse do
-  before do
-    @p = TextParse.new
-  end
+    let(:parser) { TextParse.new }
 
   describe 'lexer empty string' do
     before do
-      @actual = @p.lexer ''
+      @actual = parser.lexer ''
     end
 
     it 'should be []' do
@@ -21,7 +19,7 @@ describe TextParse do
 
   describe 'lexer 4 character string' do
     before do
-      @actual = @p.lexer '1234'
+      @actual = parser.lexer '1234'
     end
 
     it "should be ['1234']" do
@@ -32,7 +30,7 @@ describe TextParse do
 
   describe 'lexer "abcd [ital def] ghi"' do
     before do
-      @actual = @p.lexer 'abc [ital def] ghi'
+      @actual = parser.lexer 'abc [ital def] ghi'
     end
     it 'should be ["abc ", "ital def", "ghi"' do
       @actual.must_equal ['abc ', 'ital def', ' ghi']
@@ -40,7 +38,7 @@ describe TextParse do
   end
 
   describe 'lexer "[bold hellow world]"' do
-    subject { @p.lexer '[bold hello world]' }
+    subject { parser.lexer '[bold hello world]' }
 
     specify { subject.must_equal ['bold hello world'] }
 
@@ -48,7 +46,7 @@ describe TextParse do
 
   describe 'chunker []' do
     before do
-      @actual = @p.chunker []
+      @actual = parser.chunker []
     end
 
     it 'should be []' do
@@ -59,7 +57,7 @@ describe TextParse do
 
   describe "chunker ['abc']" do
     before do
-      @actual = @p.chunker ['abc']
+      @actual = parser.chunker ['abc']
     end
 
     it "should be  [[:t, 'abc']]" do
@@ -70,7 +68,7 @@ describe TextParse do
 
   describe "chunker ['abc', 'def']" do
     before do
-      @actual = @p.chunker ['abc', 'def']
+      @actual = parser.chunker ['abc', 'def']
     end
 
     it "should be [[:t, 'abc'], [:t, 'def']]" do
@@ -80,7 +78,7 @@ describe TextParse do
 
   describe "chunker ['abc ', 'ital def', ' ghi']" do
     before do
-      @actual = @p.chunker ['abc ', 'ital def', ' ghi']
+      @actual = parser.chunker ['abc ', 'ital def', ' ghi']
     end
 
     it "should be [[:t, 'abc '], [:ital, 'def'], [:t, ' ghi']]" do
@@ -90,7 +88,7 @@ describe TextParse do
 
   describe "chunker ['abcdef', 'bold ghi jkl']" do
     before do
-      @actual = @p.chunker ['abcdef', 'bold ghi']
+      @actual = parser.chunker ['abcdef', 'bold ghi']
     end
 
     it "should be [[:t 'abcdef'], [:bold, 'ghi']]" do
@@ -99,13 +97,13 @@ describe TextParse do
   end
 
   describe 'parse "abc [bold def] ghi jkl"' do
-    subject { @p.parse 'abc [bold def] ghi jkl' }
+    subject { parser.parse 'abc [bold def] ghi jkl' }
     specify { subject.must_equal [[:t, 'abc '], [:bold, 'def'], [:t, ' ghi jkl']] }
   end
 
 
   describe 'parse "[bold ab] def [ital ghi] jkl"' do
-    subject { @p.parse '[bold ab] def [ital ghi] jkl' }
+    subject { parser.parse '[bold ab] def [ital ghi] jkl' }
 
   specify { subject.must_equal [
       [:bold, 'ab'],
@@ -114,5 +112,12 @@ describe TextParse do
       [:t, ' jkl']
   ] }
 
+  end
+
+  # pass through [= variable]
+  describe '[= page]' do
+    subject { parser.parse 'Page [= page] of [= page_count] pages' }
+
+    specify {subject.must_equal  [[:t, "Page "], [:t, "= page"], [:t, " of "], [:t, "= page_count"], [:t, " pages"]] }
   end
 end
