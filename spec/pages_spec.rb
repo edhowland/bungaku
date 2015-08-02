@@ -35,5 +35,12 @@ describe 'multiple pages' do
 
     specify { subject.page_count.must_equal 2 }
   end 
+
+  describe 'pass codes array unchanged' do
+    let(:codes) { [[:h1, 'Header 1'], [:page], [:code, 'some shell stuff'], [:page], [:para, '']] }
+    subject { c=counter; c.process codes}
+
+  specify { subject.must_equal codes }
+  end
 end
 
