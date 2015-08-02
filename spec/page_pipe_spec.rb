@@ -17,14 +17,13 @@ describe 'MdGen Pagination' do
 
   describe 'empty page break with no block' do
     subject { runner.run { page{}  } }
-#    subject {gen.process {page } }
 
     specify { subject.must_equal [[:page, 1, 1]]}
   end
   describe 'should have page method taking a block' do
-    subject { gen.process { page { h1 'text' } } }
+    subject { runner.run { page { h1 'text' } } }
 
-    specify { skip(); subject.must_equal [[:h1, 'text'], [:page, 1, 1]] }
+    specify {  subject.must_equal [[:h1, 'text'], [:page, 1, 1]] }
   end
 
   describe 'block with 2 page vlocks' do
