@@ -7,74 +7,33 @@ describe PageCounter do
   let(:counter) { PageCounter.new }
 
   describe 'should have 0 pages' do
-    subject { c=counter; c.process {}; c }
+    subject { c=counter; c.process []; c }
 
     specify { subject.page_count.must_equal 0 }
   end
 
   describe 'with Bungaku::VERSION' do
-    subject { c=counter; c.process { para Bungaku::VERSION };  c }
+    subject { c=counter; c.process [[ :para, Bungaku::VERSION]];  c }
 
     specify { subject.page_count.must_equal 0 }
   end
 
-  describe 'eval_string Bungaku::VERSION' do
-    subject { c=counter; c.eval_string 'para Bungaku::VERSION'; c }
 
-    specify { subject.page_count.must_equal 0 }
+describe 'multiple pages' do
+    subject {c=counter; c.process [[:page], [:page]];  c}
+
+    specify { subject.page_count.must_equal 2  }
   end
 
-describe 'block with 2 page blocks' do
-    subject { counter.process {page { } ; page { } } }
-
-    specify { subject.must_equal 2  }
-  end
-
-  describe 'with head and no pages' do
-    subject { counter.process {  h1 '' } }
+  describe 'with head , para d and no pages' do
+    subject { c=counter; c.process [[:h1, 'header'], [:para, '']]; c}
 
     specify { subject.must_equal 0}
   end
   describe 'block with h1, 2 pages block with inner primatives' do
-    subject { counter.process { h2 ''; page {  para '' }; page { code '' } } }
+    subject { c=counter; c.process [[:h2, ''], [:page], [:para, ''], [:page], [:code, '']]; c}
 
     specify { subject.must_equal 2 }
   end 
 end
 
-describe 'MdGen Pagination' do
-  let(:gen) { MdGen.new }
-  let(:counter) { PageCounter.new }
-  let(:pipe) { RenderPipeline.new }
-  let(:runner) do
-    p = pipe
-    p << ->(x) { gen.process x }
-    p << ->(x) { counter.process x }
-    p
-  end
-
-
-  describe 'empty page break with no block' do
-    subject { runner.run { page } }
-#    subject {gen.process {page } }
-
-    specify { subject.must_equal [[:page, 1, 1]]}
-  end
-  describe 'should have page method taking a block' do
-    subject { gen.process { page { h1 'text' } } }
-
-    specify { skip(); subject.must_equal [[:h1, 'text'], [:page, 1, 1]] }
-  end
-
-  describe 'block with 2 page vlocks' do
-    subject { gen.process { page {}; page {} }}
-
-  specify {skip();  subject.must_equal [[:page, 1, 2], [:page, 2,2]]  }
-  end
-
-  describe 'passing variables to page blocks' do
-    subject { gen.process { page {|page, total| h1 "page: #{page}, total: #{total}" } } }
-
-  specify {skip(); subject.must_equal [[:h1, 'page: 1, total: 1'], [:page, 1,1]] }
-  end
-end
