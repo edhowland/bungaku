@@ -41,5 +41,11 @@ describe 'multiple pages' do
 
   specify { subject.must_equal codes }
   end
-end
 
+  describe 'actually count pages' do
+    let(:codes) { [[:h1, ''], [:page, 0, 0], [:code, ''], [:page, 0, 0]] }
+    subject { c=counter; c.process codes }
+
+    specify { subject.must_equal [[:h1, ''], [:page, 1, 2], [:code, ''], [:page, 2, 2]] }
+  end
+end
