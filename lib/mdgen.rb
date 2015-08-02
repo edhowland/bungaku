@@ -8,4 +8,5 @@ require_relative 'mdgen/page_counter'
 require_relative 'mdgen/md_gen'
 require_relative 'mdgen/gfm_render'
 require_relative 'mdgen/markdown'
+require_relative 'mdgen/pipe_factory'
 

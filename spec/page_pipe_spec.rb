@@ -27,14 +27,14 @@ describe 'MdGen Pagination' do
   end
 
   describe 'block with 2 page vlocks' do
-    subject { gen.process { page {}; page {} }}
+    subject { runner.run { page {}; page {} }}
 
-  specify {skip();  subject.must_equal [[:page, 1, 2], [:page, 2,2]]  }
+  specify {  subject.must_equal [[:page, 1, 2], [:page, 2,2]]  }
   end
 
   describe 'passing variables to page blocks' do
-    subject { gen.process { page {|page, total| h1 "page: #{page}, total: #{total}" } } }
+    subject {runner.run  { page {|page, total| h1 "page: #{page}, total: #{total}" } } }
 
-  specify {skip(); subject.must_equal [[:h1, 'page: 1, total: 1'], [:page, 1,1]] }
+  specify { subject.must_equal [[:h1, 'page: 1, total: 1'], [:page, 1,1]] }
   end
 end
