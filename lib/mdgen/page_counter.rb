@@ -10,7 +10,7 @@ class PageCounter
 
 
   def process codes
-  @page_counter = codes.reduce(0) {|i, j| i + 1 if j[0] == :page }
+  @page_count = codes.select {|e| e[0] == :page }.length
     codes
   end
 
