@@ -1,6 +1,8 @@
 # page_pipe_spec.rv - spec for running PageCounter in pipeline
 
 require_relative 'spec_helper'
+
+
 describe 'MdGen Pagination' do
   let(:gen) { MdGen.new }
   let(:counter) { PageCounter.new }

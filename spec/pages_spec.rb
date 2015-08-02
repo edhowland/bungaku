@@ -18,9 +18,8 @@ describe PageCounter do
     specify { subject.page_count.must_equal 0 }
   end
 
-
 describe 'multiple pages' do
-    subject {c=counter; c.process [[:page], [:page]];  c}
+    subject {c=counter; c.process [[:page, 0, 0], [:page, 0, 0]];  c}
 
     specify { subject.page_count.must_equal 2  }
   end
@@ -31,13 +30,13 @@ describe 'multiple pages' do
     specify { subject.page_count.must_equal 0}
   end
   describe 'block with h1, 2 pages block with inner primatives' do
-    subject { c=counter; c.process [[:h2, ''], [:page], [:para, ''], [:page], [:code, '']]; c}
+    subject { c=counter; c.process [[:h2, ''], [:page, 0, 0], [:para, ''], [:page, 0, 0], [:code, '']]; c}
 
     specify { subject.page_count.must_equal 2 }
   end 
 
   describe 'pass codes array unchanged' do
-    let(:codes) { [[:h1, 'Header 1'], [:page], [:code, 'some shell stuff'], [:page], [:para, '']] }
+    let(:codes) { [[:h1, 'Header 1'],  [:code, 'some shell stuff'],  [:para, '']] }
     subject { c=counter; c.process codes}
 
   specify { subject.must_equal codes }
