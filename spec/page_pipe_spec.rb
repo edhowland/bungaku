@@ -33,8 +33,8 @@ describe 'MdGen Pagination' do
   end
 
   describe 'passing variables to page blocks' do
-    subject {runner.run  { page {|page, total| h1 "page: #{page}, total: #{total}" } } }
+    subject {runner.run  { page {|page, total| para "page: [= page], total: [= total]" } } }
 
-  specify { subject.must_equal [[:h1, 'page: 1, total: 1'], [:page, 1,1]] }
+  specify { subject.must_equal [[:para, [[:t, "page: "], [:equal, "page"], [:t, ", total: "], [:equal, "total"]]], [:page, 1, 1]]}
   end
 end
