@@ -2,7 +2,7 @@
 
 class TextParse
   def initialize
-    @keywords = ['ital', 'bold', 'code', '=']
+    @keywords = ['ital', 'bold', 'code', 'strike', '=']
   end
   def lexer string
   string.split(/[\[\]]/).select {|e| !e.empty? }
