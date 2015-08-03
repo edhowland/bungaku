@@ -85,6 +85,6 @@ describe TextParse do
   describe '[= page]' do
     subject { parser.parse 'Page [= page] of [= page_count] pages' }
 
-    specify {skip(); subject.must_equal  [[:t, "Page "], [:equal, "page"], [:t, " of "], [:equal, "page_count"], [:t, " pages"]] }
+    specify { subject.must_equal  [[:t, "Page "], [:equal, "page"], [:t, " of "], [:equal, "page_count"], [:t, " pages"]] }
   end
 end
