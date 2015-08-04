@@ -8,8 +8,8 @@ def text_parse_valve codes
       e[1] = parser.parse e[1]
     when :ul, :ol
       e[1] = e[1].map {|f| parser.parse f }
-
-
+      when :a
+      e[1] = [parser.parse(e[1][0]), e[1][1]]
   end
     e
   end

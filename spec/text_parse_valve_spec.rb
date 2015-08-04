@@ -38,4 +38,18 @@ describe 'text_parse_valve' do
 ]
   ] ] }
   end
+
+  describe 'link' do
+    subject { runner.run "link \"This is [ital Example's] Homepage\", 'http://www.example.com'" }
+
+    specify { subject.must_equal [
+      [:a, [
+    [[:t, 'This is '],
+        [:ital, "Example's"],
+        [:t, ' Homepage']
+],
+      'http://www.example.com']
+      ]
+    ] }
+  end
 end
