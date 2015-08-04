@@ -9,8 +9,6 @@ class MdGen < CodeCompiler
 
   def initialize
   super
-  @page_count = 0
-    @page_current = 0
   end
 
 
@@ -74,9 +72,8 @@ alias_method :numbers, :ordered_list
   end
 
   def page(&blk)
-    @page_current += 1
-  yield @page_current, @page_count if block_given?
-    @codes << [:page, @page_current, @page_count]
+  yield if block_given?
+    @codes << [:page, 0, 0]
   end
 
   def table arr
@@ -95,15 +92,12 @@ alias_method :numbers, :ordered_list
   end
 
   def eval_string string
-    @page_count = PageCounter.new.eval_string string
     self.instance_eval string
     @codes
   end
 
   # process the block which contains the MDSL commads returning array of opcodes
 def process(&blk)
-    # count pages first
-#    @page_count = PageCounter.new.process(&blk)
     self.instance_exec &blk
     @codes
   end  
