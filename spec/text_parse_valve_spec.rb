@@ -11,10 +11,20 @@ describe 'text_parse_valve' do
     pipe
   end
 
-
   describe 'h1 "header"' do
     subject { runner.run "h1 'header'" }
 
     specify { subject.must_equal [[:h1, [[:t, 'header']] ]] }
+  end
+
+  describe 'bullets, numbers' do
+    subject { runner.run "bullets 'Item 1', '[bold Item 2]'" }
+
+    specify { subject.must_equal [
+      [:ul, [
+        [[:t, 'Item 1']],
+        [[:bold, 'Item 2']]
+]
+  ] ] }
   end
 end

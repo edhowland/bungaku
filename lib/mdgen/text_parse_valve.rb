@@ -3,8 +3,13 @@
 def text_parse_valve codes
   parser = TextParse.new
   codes.map do |e|
-    if e.first == :h1
+    case e[0]
+    when :h1
       e[1] = parser.parse e[1]
+    when :ul
+      e[1] = e[1].map {|f| parser.parse f }
+
+
   end
     e
   end
