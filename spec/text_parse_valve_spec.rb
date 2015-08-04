@@ -15,6 +15,6 @@ describe 'text_parse_valve' do
   describe 'h1 "header"' do
     subject { runner.run "h1 'header'" }
 
-    specify { subject.must_equal [[:h1, 'header']] }
+    specify { subject.must_equal [[:h1, [[:t, 'header']] ]] }
   end
 end
