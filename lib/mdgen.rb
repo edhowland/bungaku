@@ -10,4 +10,4 @@ require_relative 'mdgen/gfm_render'
 require_relative 'mdgen/markdown'
 require_relative 'mdgen/pipe_factory'
 require_relative 'mdgen/text_parse_valve'
-
+require_relative 'mdgen/interpolate_variables'
