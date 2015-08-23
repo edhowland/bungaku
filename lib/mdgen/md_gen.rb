@@ -72,8 +72,9 @@ alias_method :numbers, :ordered_list
   end
 
   def page(&blk)
-  yield if block_given?
-    @codes << [:page, 0, 0]
+  #yield if block_given?
+    #@codes << [:page, 0, 0]
+    @codes << [:page, blk]
   end
 
   def table arr
