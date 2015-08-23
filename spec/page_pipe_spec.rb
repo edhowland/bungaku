@@ -7,14 +7,6 @@ describe 'MdGen Pagination' do
   let(:gen) { MdGen.new }
   let(:counter) { PageCounter.new }
   let(:chain) { ->(x){gen.eval_string(x) } | ->(x){ counter.process(x) } } 
-  #let(:pipe) { RenderPipeline.new }
-  #let(:runner) do
-    ##p = pipe
-    #p << ->(x) { gen.process &x }
-    #p << ->(x) { counter.process x }
-    #p
-  #end
-
 
   describe 'empty page break with no block' do
     subject { chain.call_chain " page{}  " }
