@@ -15,4 +15,10 @@ describe Pager do
     specify { subject.must_equal 2 }
   end
 
+  describe 'complex count_pages' do
+    let(:codes) { [[:para, ''], [:page, nil], [:code, ''], [:page, nil]] }  
+    subject { pager.count_pages codes }
+
+    specify { subject.must_equal 2 }
+  end
 end
