@@ -52,4 +52,16 @@ describe Pager do
 
   specify { subject.must_equal [[:page, 1, 3, nil], [:page, 2, 3, nil], [:page, 3, 3, nil]] }
   end
+
+  describe 'count_and_ennumber_pages []' do
+    subject { pager.count_and_ennumber_pages [] }
+    specify { subject.must_equal [] }
+  end
+
+  describe 'count_and_ennumber_pages with no pages' do
+    let(:codes) { [[:a, '', ''], [:ul, []], [:ol, ['', '']], [:para, '']] }
+    subject { pager.count_and_ennumber_pages codes }
+
+    specify { subject.must_equal codes }
+  end
 end
