@@ -31,6 +31,13 @@ describe Pager do
     specify { subject.must_equal [] }
   end
 
+  describe 'ennumber_pages with no pages' do
+    let(:codes) { [[:para, ''], [:code, '']] }
+    subject { pager.ennumber_pages codes }
+
+    specify { subject.must_equal codes }
+  end
+
   describe 'ennumber_pages' do
     let(:codes) { [[:page, nil], [:page, nil]] }
     subject { pager.ennumber_pages codes, 2 }
