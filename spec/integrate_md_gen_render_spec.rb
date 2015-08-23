@@ -32,25 +32,25 @@ EOC
     specify { subject.must_equal "\`\`\`\ncode1\n\`\`\`\n\n\`\`\`\ncode2\n\`\`\`\n\n"  }
   end
 describe 'simple two elements: para, code' do
-    subject { rend.render gen.process { para 'text'; code 'code' } } 
+    subject { chain.call_chain " para 'text'; code 'code' " }
 
     specify { subject.must_equal "text\n\n\`\`\`\ncode\n\`\`\`\n\n" }
   end
 
   describe 'code then para' do
-    subject { rend.render gen.process { code 'code'; para 'text' } }
+    subject { chain.call_chain " code 'code'; para 'text' " }
 
   specify { subject.must_equal "\`\`\`\ncode\n\`\`\`\n\ntext\n\n" }
   end
 
 describe 'para, code and para' do
-    subject { rend.render gen.process { para 'text'; code 'code'; para 'text' } }
+    subject { chain.call_chain " para 'text'; code 'code'; para 'text' " }
 
   specify { subject.must_equal "text\n\n\`\`\`\ncode\n\`\`\`\n\ntext\n\n" }
   end
 
   describe 'para with bold and ital, code, para' do
-    subject { rend.render gen.process { para 'the [bold quick] brown [ital fox]'; code 'code' ; para 'text' } }  
+    subject {chain.call_chain " para 'the [bold quick] brown [ital fox]'; code 'code' ; para 'text' " }
 
   specify { subject.must_equal "the **quick** brown *fox*\n\n\`\`\`\ncode\n\`\`\`\n\ntext\n\n" }
   end
