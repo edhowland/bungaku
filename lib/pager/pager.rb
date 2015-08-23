@@ -17,4 +17,8 @@ class Pager
       end
     }.reverse
   end
+
+  def count_and_ennumber_pages codes
+    ennumber_pages codes, count_pages(codes)
+  end
 end

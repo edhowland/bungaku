@@ -44,4 +44,12 @@ describe Pager do
 
     specify { subject.must_equal [[:page, 1,2, nil], [:page, 2,2, nil]] }
   end
+
+
+  describe 'count_and_ennumber_pages' do
+    let(:codes) { [[:page, nil], [:page, nil], [:page, nil]] }
+    subject { pager.count_and_ennumber_pages codes }
+
+  specify { subject.must_equal [[:page, 1, 3, nil], [:page, 2, 3, nil], [:page, 3, 3, nil]] }
+  end
 end
