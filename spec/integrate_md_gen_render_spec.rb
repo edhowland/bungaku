@@ -21,13 +21,13 @@ EOC
 
 
   describe 'three paragraphs' do
-    subject { rend.render gen.process { para 'text1'; para 'text2'; para 'text3' } }
+    subject { chain.call_chain " para 'text1'; para 'text2'; para 'text3' " }
 
     specify { subject.must_equal"text1\n\ntext2\n\ntext3\n\n"  }
   end
 
   describe '2 code elements' do
-    subject { rend.render gen.process { code 'code1'; code 'code2' } }
+    subject { chain.call_chain " code 'code1'; code 'code2' " }
 
     specify { subject.must_equal "\`\`\`\ncode1\n\`\`\`\n\n\`\`\`\ncode2\n\`\`\`\n\n"  }
   end
