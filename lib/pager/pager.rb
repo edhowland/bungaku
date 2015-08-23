@@ -7,6 +7,14 @@ class Pager
 
   def ennumber_pages codes, total=0
     current = total
-    codes.reverse.map {|e| e }.reverse
+    codes.reverse.map {|e|
+      if e[0] == :page
+        r = [:page, current, total, e[1]]
+        current -= 1
+        r
+      else
+        e
+      end
+    }.reverse
   end
 end
