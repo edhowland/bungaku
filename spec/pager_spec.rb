@@ -16,9 +16,12 @@ describe Pager do
   end
 
   describe 'complex count_pages' do
+    let(:codes0) {[[:para, ''], [:code, ''], [:a, '', '']] }
     let(:codes) { [[:para, ''], [:page, nil], [:code, ''], [:page, nil]] }  
+    let(:counter0) { pager.count_pages codes0 }
     subject { pager.count_pages codes }
 
+    specify { counter0.must_equal 0 }
     specify { subject.must_equal 2 }
   end
 end
