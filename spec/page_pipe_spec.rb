@@ -22,19 +22,19 @@ describe 'MdGen Pagination' do
     specify { subject.must_equal [[:page, 1, 1]]}
   end
   describe 'should have page method taking a block' do
-    subject { chain.call_chain { page { h1 'text' } } }
+    subject { chain.call_chain " page { h1 'text' } " }
 
     specify {  subject.must_equal [[:h1, 'text'], [:page, 1, 1]] }
   end
 
   describe 'block with 2 page vlocks' do
-    subject { chain.call_chain { page {}; page {} }}
+    subject { chain.call_chain " page {}; page {} "}
 
   specify {  subject.must_equal [[:page, 1, 2], [:page, 2,2]]  }
   end
 
   describe 'passing variables to page blocks' do
-    subject { chain.call_chain  { page {|page, total| para "page: [= page], total: [= total]" } } }
+    subject { chain.call_chain  " page {|page, total| para 'page: [= page], total: [= total]' } " }
 
   specify { subject.must_equal [[:para, [[:t, "page: "], [:equal, "page"], [:t, ", total: "], [:equal, "total"]]], [:page, 1, 1]]}
   end
