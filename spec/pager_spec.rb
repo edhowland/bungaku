@@ -6,9 +6,12 @@ describe Pager do
   let(:pager) { Pager.new }
 
   describe 'count_pages' do
-    let(:codes) { [[:page, nil], [:page, nil]] }
-    subject { pager.count_pages codes }
+    let(:codes0) { [] }
+    let(:codes2) { [[:page, nil], [:page, nil]] }
+    let(:counter0) { pager.count_pages codes0 }
+    subject { pager.count_pages codes2 }
 
+     specify { counter0.must_equal 0 }
     specify { subject.must_equal 2 }
   end
 
