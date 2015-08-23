@@ -98,8 +98,8 @@ alias_method :numbers, :ordered_list
   end
 
   # process the block which contains the MDSL commads returning array of opcodes
-def process(&blk)
-    self.instance_exec &blk
+def process(page_number=0, page_total=0, &blk)
+    self.instance_exec(page_number, page_total, &blk)
     @codes
   end  
 
