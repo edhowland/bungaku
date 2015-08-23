@@ -4,21 +4,16 @@ require_relative 'spec_helper'
 
 describe 'text_parse_valve' do
   let(:gen) { MdGen.new }
-  let(:pipe) { RenderPipeline.new }
-  let(:runner) do
-    pipe << ->(x) { gen.eval_string x }
-    pipe << ->(x) { text_parse_valve x }
-    pipe
-  end
+  let(:chain) { ->(x){ gen.eval_string(x) } | ->(x){ text_parse_valve(x) } }
 
   describe 'h1 "header"' do
-    subject { runner.run "h1 'header'" }
+    subject { chain.call_chain"h1 'header'" }
 
     specify { subject.must_equal [[:h1, [[:t, 'header']] ]] }
   end
 
   describe 'numbers' do
-    subject { runner.run "numbers 'Item 1', '[bold Item 2]'" }
+    subject { chain.call_chain "numbers 'Item 1', '[bold Item 2]'" }
 
     specify { subject.must_equal [
       [:ol, [
@@ -29,7 +24,7 @@ describe 'text_parse_valve' do
   end
 
   describe 'bullets' do
-    subject { runner.run "bullets 'Item 1', '[bold Item 2]'" }
+    subject { chain.call_chain "bullets 'Item 1', '[bold Item 2]'" }
 
     specify { subject.must_equal [
       [:ul, [
@@ -40,7 +35,7 @@ describe 'text_parse_valve' do
   end
 
   describe 'link' do
-    subject { runner.run "link \"This is [ital Example's] Homepage\", 'http://www.example.com'" }
+    subject { chain.call_chain "link \"This is [ital Example's] Homepage\", 'http://www.example.com'" }
 
     specify { subject.must_equal [
       [:a, [
