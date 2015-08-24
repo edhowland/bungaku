@@ -15,7 +15,7 @@ class Pager
 
   def call_lambda codes
     codes.map_select(->(x){ x[0] == :page}) {|e|
-       [:page, e[1], e[2]]
+       [:page, e[1], e[2], MdGen.process(1,1, e[3])]
     }
   end
 end
