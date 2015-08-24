@@ -10,4 +10,9 @@ module EnumerableMapParam
   def map_select(prc, &blk)
     self.map {|e| (prc.call(e) ? yield(e) : e) }
   end
+
+  # combine map_select and map_param
+  def map_param_select initial, prc, &blk
+    self.map_select(prc) {|e|initial, e = yield initial, e; e }
+  end
 end
