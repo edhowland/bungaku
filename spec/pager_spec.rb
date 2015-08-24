@@ -71,3 +71,16 @@ describe Pager do
     specify { subject.must_equal codes }
   end
 end
+
+describe 'Pager call Procs' do
+  let(:gen) { MdGen.new }
+  let(:pager) { Pager.new }
+
+  describe 'call_lambda' do
+    let(:codes) { gen.eval_string 'page {|p, t| h1 "#{p}, #{t}" }' }
+    let(:counter) { pager.count_and_ennumber_pages codes }
+    subject { pager.call_lambda counter }
+
+    specify { subject.must_equal [[:page, [[:h1, '1,1']] ]] }
+end
+end

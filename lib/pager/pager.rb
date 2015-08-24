@@ -12,4 +12,10 @@ class Pager
   def count_and_ennumber_pages codes
     ennumber_pages codes, count_pages(codes)
   end
+
+  def call_lambda codes
+    codes.map_select(->(x){ x[0] == :page}) {|e|
+       [:page, e[1], e[2]]
+    }
+  end
 end
