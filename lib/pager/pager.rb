@@ -6,17 +6,6 @@ class Pager
   end
 
   def ennumber_pages codes, total=0
-    #current = total
-    #codes.reverse.map {|e|
-      #if e[0] == :page
-        ##r = [:page, current, total, e[1]]
-        #current -= 1
-        #r
-      #else
-        #e
-      #end
-    #}.reverse
-
     codes.map_param_select(1, ->(x){x[0] == :page}) {|i, j| [i+1,[:page, i, total, j[1]]] }  #[i+1, [:page, i, total, j[1]] }
   end
 
