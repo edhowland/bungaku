@@ -16,3 +16,8 @@ module EnumerableMapParam
     self.map_select(prc) {|e|initial, e = yield initial, e; e }
   end
 end
+
+# Really do not like this: TODO investigate
+class Array
+  include EnumerableMapParam
+end
