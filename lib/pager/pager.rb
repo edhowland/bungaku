@@ -18,4 +18,10 @@ class Pager
        [:page, e[1], e[2], MdGen.new.process(e[1],e[2], &e[3])]
     }
   end
+
+
+  # split out inner page content and the page element
+  def split_content_and_page codes
+    codes
+  end
 end

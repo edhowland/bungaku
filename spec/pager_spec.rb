@@ -93,3 +93,22 @@ end
     specify { subject.must_equal [[:para, 'hello'], [:code, '']] }
   end
 end
+
+describe 'split page content and page' do
+  let(:pager) { Pager.new }
+
+  describe 'split_code' do
+    let(:code) {  [:page, 1, 2, [[:para, 'text']] ] }
+    before { @content, @page = pager.split_code code }
+
+    specify { @content.must_equal [[:para, 'text']] }
+    specify { @page.must_equal [:page, 1, 2] }
+  end
+
+  describe 'single element' do
+    let(:codes) { [[:page, 1, 1, [[:para, 'text']] ]] }
+    subject { pager.split_content_and_page codes }
+
+  specify {skip();  subject.must_equal [[:para, 'text'], [:page, 1, 1]] }
+  end
+end
