@@ -117,11 +117,20 @@ describe 'Integrated content' do
   before do
     @content <<-EOD
       page {|page, total|
-
+        h6 "Page: #{page} of #{total}"
       }
       page {|page, total|
-
+        h6 "Page: #{page} of #{total}"
       } 
 EOD
   end
+
+  subject { chain.call_chain @content }
+
+  specify { subject.must_equal [
+    [:h6, 'Page 1 of 2'],
+    [:page, 1, 2],
+    [:h6, 'Page 2 of 2'],
+    [:page, 2, 2]
+  ] }
 end
