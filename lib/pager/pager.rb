@@ -41,6 +41,8 @@ class Pager
 
   # encompasses all of the above
   def process codes
-    codes
+    counted = count_and_ennumber_pages codes
+    called = call_lambda counted
+    split_content_and_page called
   end
 end
