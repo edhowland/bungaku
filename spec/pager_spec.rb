@@ -109,6 +109,6 @@ describe 'split page content and page' do
     let(:codes) { [[:page, 1, 1, [[:para, 'text']] ]] }
     subject { pager.split_content_and_page codes }
 
-  specify {skip();  subject.must_equal [[:para, 'text'], [:page, 1, 1]] }
+  specify {  subject.must_equal [[:para, 'text'], [:page, 1, 1]] }
   end
 end

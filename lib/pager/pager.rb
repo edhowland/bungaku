@@ -24,7 +24,18 @@ class Pager
   def split_code code
     [code[3], code[0..2]]
   end
+
+  # flatten page content first then page
   def split_content_and_page codes
-    codes
+    codes.reduce([]) do |i, j|
+      if j[0] == :page
+        content, page = split_code(j) 
+        content.each {|e| i << e }
+        i << page
+      else
+        i << j
+      end
+      i
+  end
   end
 end
