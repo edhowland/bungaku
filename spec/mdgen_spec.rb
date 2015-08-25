@@ -38,18 +38,18 @@ describe MdGen do
   end
 end
 
-describe 'MdGen: complicated examples' do
+describe 'MdGen: complicated examples (no text parsing)' do
   let(:gen) { MdGen.new }
   describe '3 types: h1, para, code' do
     subject { gen.process { h1 'head'; para 'text'; code 'code' }  }
 
-  specify { subject.must_equal [[:h1, 'head'], [:para, [[:t, 'text']]], [:code, 'code']] }
+  specify { subject.must_equal [[:h1, 'head'], [:para, 'text'], [:code, 'code']] }
   end
 
  describe 'code then para' do
     subject { gen.process { code 'code'; para 'text' } }
 
-    specify { subject.must_equal [[:code, 'code'], [:para, [[:t, 'text']]]] }
+    specify { subject.must_equal [[:code, 'code'], [:para, 'text']] }
   end
 
   describe 'render table' do
