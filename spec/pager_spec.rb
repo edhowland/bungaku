@@ -134,3 +134,25 @@ EOD
     [:page, 2, 2]
   ] }
 end
+
+
+describe 'Integrated content eith no pages' do
+  let(:gen) { MdGen.new }
+  let(:pager) { Pager.new }
+  let(:lgen) { ->(x){ gen.eval_string(x) } }
+  let(:chain) { lgen | ->(x){ pager.process(x) }; lgen }
+  before do
+    @content = <<-EOD
+    page_no = 0; total = 0
+        h6 "Page \#{page_no} of \#{total}"
+        h6 "Page \#{page_no} of \#{total}"
+EOD
+  end
+
+  subject { chain.call_chain @content }
+
+  specify { subject.must_equal [
+    [:h6, 'Page 0 of 0'],
+    [:h6, 'Page 0 of 0']
+  ] }
+end
