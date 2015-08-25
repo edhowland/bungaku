@@ -108,3 +108,20 @@ describe 'split page content and page' do
   specify {  subject.must_equal [[:para, 'text'], [:page, 1, 1]] }
   end
 end
+
+describe 'Integrated content' do
+  let(:gen) { MdGen.new }
+  let(:pager) { Pager.new }
+  let(:lgen) { ->(x){ gen.eval_string(x) } }
+  let(:chain) { lgen | ->(x){ pager.process(x) }; lgen }
+  before do
+    @content <<-EOD
+      page {|page, total|
+
+      }
+      page {|page, total|
+
+      } 
+EOD
+  end
+end
