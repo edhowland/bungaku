@@ -4,7 +4,8 @@ require_relative 'spec_helper'
 
 describe 'text_parse_valve' do
   let(:gen) { MdGen.new }
-  let(:chain) { ->(x){ gen.eval_string(x) } | ->(x){ text_parse_valve(x) } }
+  let(:lgen) { ->(x){ gen.eval_string(x)} }
+  let(:chain) { lgen | ->(x){ text_parse_valve(x) }; lgen }
 
   describe 'h1 "header"' do
     subject { chain.call_chain"h1 'header'" }
