@@ -3,7 +3,8 @@
 require_relative 'spec_helper'
 
 describe 'generate, then render' do
-  let(:chain) {->(x) { MdGen.new.eval_string(x) } | ->(x) { GfmRender.new.render(x) } }
+  let(:lgen) { ->(x){ MdGen.new.eval_string(x) } }
+  let(:chain) { lgen | ->(x) { GfmRender.new.render(x) }; lgen }
 
   describe 'h1 to # heading 1' do
     subject { chain.call_chain("h1 'heading 1'") }
