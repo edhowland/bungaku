@@ -81,6 +81,6 @@ describe 'Pager call Procs' do
     let(:counter) { pager.count_and_ennumber_pages codes }
     subject { pager.call_lambda counter }
 
-    specify { subject.must_equal [[:page, [[:h1, '1,1']] ]] }
+    specify { subject.must_equal [[:page, 1, 1, [[:h1, '1, 1']] ]] }
 end
 end
