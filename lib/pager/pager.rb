@@ -21,6 +21,9 @@ class Pager
 
 
   # split out inner page content and the page element
+  def split_code code
+    [code[3], code[0..2]]
+  end
   def split_content_and_page codes
     codes
   end
