@@ -76,11 +76,20 @@ describe 'Pager call Procs' do
   let(:gen) { MdGen.new }
   let(:pager) { Pager.new }
 
-  describe 'call_lambda' do
+  describe 'call_lambdai with one page and inner h1' do
     let(:codes) { gen.eval_string 'page {|p, t| h1 "#{p}, #{t}" }' }
     let(:counter) { pager.count_and_ennumber_pages codes }
     subject { pager.call_lambda counter }
 
     specify { subject.must_equal [[:page, 1, 1, [[:h1, '1, 1']] ]] }
 end
+
+  describe 'called with no pages' do
+    #let(:codes) { gen.eval_string "para 'hello'; codes ''" }
+    let(:codes) { gen.eval_string 'para "hello"; code ""' }
+    let(:counter) { pager.count_and_ennumber_pages codes }
+    subject { pager.call_lambda counter }
+
+    specify { subject.must_equal [[:para, 'hello'], [:code, '']] }
+  end
 end

@@ -49,9 +49,12 @@ class MdGen < CodeCompiler
   end
 
 def para string
-  parser = TextParse.new
+  #parser = TextParse.new
   
-    @codes << [:para, parser.parse(string)]
+    # TODO: restructure to move text parse to its own lambda in pipeline
+    #@codes << [:para, parser.parse(string)]
+
+    @codes << [:para, string]
   end
 
   alias_method :text, :para

@@ -19,27 +19,22 @@ describe MdGen do
     specify { subject.must_equal [] }
   end
 
-  describe 'simple paragraph element' do
+  describe 'simple paragraph element (no text parsing)' do
     before do
       @m.process { para 'this is regular text' }
     end
 
     subject { @m.codes }
 
-    specify { subject.must_equal [[:para, [[:t, 'this is regular text']]]]}
+    specify { subject.must_equal [[:para, 'this is regular text']]}
   end
 
-  describe "paragraph with bold element" do
+  describe "paragraph with bold element (no text parsing)" do
     before { @m.process { para 'This is [bold bold] text' }}
 
     subject { @m.codes }
 
-    specify { subject.must_equal [[:para, [
-        [:t, 'This is '], 
-        [:bold, 'bold'], 
-        [:t, ' text']
-        ]]] }
-
+    specify { subject.must_equal [[:para, 'This is [bold bold] text']]}
   end
 end
 
