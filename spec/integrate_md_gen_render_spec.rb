@@ -5,7 +5,7 @@ require_relative 'spec_helper'
 describe 'Integration test: MdGen, GfmRender' do
   let(:gen) { MdGen.new }
   let(:rend) { GfmRender.new }
-  let(:chain) { ->(x){ gen.eval_string(x) } | ->(x){  rend.render(x)} }
+  let(:chain) { ->(x){ gen.eval_string(x) } | ->(x){ text_parse_valve(x) } |  ->(x){ rend.render(x)} }
 
   describe 'simple code element' do
     subject { chain.call_chain " code 'code' " }
