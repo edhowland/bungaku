@@ -47,4 +47,10 @@ describe 'text_parse_valve' do
       ]
     ] }
   end
+
+  describe 'para' do
+    subject { chain.call_chain "para 'Some [ital italic] text'" }
+
+    specify { subject.must_equal [[:para, [[:t, 'Some '], [:ital, 'italic'], [:t, ' text']] ]] }
+  end
 end
