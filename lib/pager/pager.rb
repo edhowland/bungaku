@@ -38,4 +38,9 @@ class Pager
       i
   end
   end
+
+  # encompasses all of the above
+  def process codes
+    codes
+  end
 end

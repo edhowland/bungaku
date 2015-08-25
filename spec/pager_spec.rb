@@ -115,12 +115,12 @@ describe 'Integrated content' do
   let(:lgen) { ->(x){ gen.eval_string(x) } }
   let(:chain) { lgen | ->(x){ pager.process(x) }; lgen }
   before do
-    @content <<-EOD
-      page {|page, total|
-        h6 "Page: #{page} of #{total}"
+    @content = <<-EOD
+      page {|page_no, total|
+        h6 "Page \#{page_no} of \#{total}"
       }
-      page {|page, total|
-        h6 "Page: #{page} of #{total}"
+      page {|page_no, total|
+        h6 "Page \#{page_no} of \#{total}"
       } 
 EOD
   end
