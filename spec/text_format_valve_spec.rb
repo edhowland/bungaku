@@ -33,11 +33,22 @@ describe 'text_format_valve' do
   specify { subject.must_equal [[:a, ['go to *example.com*', 'http://example.com']]] }
   end
 
+  describe 'is_list?' do
+    specify { is_list?([:ul]).must_equal true }
+    specify { is_list?([:ol]).must_equal true }
+  end
   describe 'bullets' do
   let(:lgen) { ->(x){ MdGen.new.eval_string(x)} }
     let(:chain) { lgen | ->(x){ text_parse_valve(x)} | ->(x){ text_format_valve(x) }; lgen }
     subject { chain.call_chain "bullets 'note 1', '[ital note 2]', '[bold note 3]'"}
 
     specify { subject.must_equal [[:ul, ['note 1', '*note 2*', '**note 3**']] ] }
+  end
+  describe 'numbers' do
+  let(:lgen) { ->(x){ MdGen.new.eval_string(x)} }
+    let(:chain) { lgen | ->(x){ text_parse_valve(x)} | ->(x){ text_format_valve(x) }; lgen }
+    subject { chain.call_chain "numbers 'note 1', '[ital note 2]', '[bold note 3]'"}
+
+    specify { subject.must_equal [[:ol, ['note 1', '*note 2*', '**note 3**']] ] }
   end
 end
