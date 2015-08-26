@@ -49,6 +49,10 @@ describe 'text_format_valve' do
   describe 'is_list?' do
     specify { is_list?([:ul]).must_equal true }
     specify { is_list?([:ol]).must_equal true }
+    [:para, :a, :code, :h1, :h2, :h3, :h4, :h5, :h6].each {|c|
+      code = [c]
+      specify { is_list?(code).must_equal false }
+    }
   end
   describe 'bullets' do
   let(:lgen) { ->(x){ MdGen.new.eval_string(x)} }
