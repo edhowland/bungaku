@@ -28,7 +28,11 @@ g = MdGen.new
 p=Pager.new
 r = GfmRender.new
 l_g = ->(x){ g.eval_string(x) }
-l_g | ->(x){ p.process(x) } | ->(x){ text_parse_valve(x) } | ->(x){ text_format_valve(x) } | ->(x){ r.render(x) }
+l_g | 
+  ->(x){ p.process(x) } |
+ ->(x){ text_parse_valve(x) } |
+ ->(x){ text_format_valve(x) } |
+   ->(x){ r.render(x) }
 
 output = l_g.call_chain(contents)
 puts output
