@@ -7,6 +7,5 @@ end
 # process code stream, formatting operands where needed
 def text_format_valve codes
   fmtr = TextFormat.new
-  #codes.map_select(->(x){ is_heading? x[0]}) {|e| :ZZZZ }     #e[1] = fmtr.format(e[1]); e }
-  codes.map_select(->(x){ true}) {|e| e[1] = fmtr.format(e[1]); e }
+  codes.map_select(->(x){ is_heading?(x)}) {|e| e[1] = fmtr.format(e[1]); e }
 end
