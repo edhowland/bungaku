@@ -8,13 +8,26 @@ describe 'text_format_valve' do
   end
 
   describe 'is_heading?' do
-
   [:h1, :h2, :h3, :h4, :h5, :h6].each {|h|
       code = [h, []]
       specify { is_heading?(code).must_equal true }
     }
+
+    [:para, :ul, :ol, :code, :a].each {|c|
+      code = [c]
+      specify { is_heading?(code).must_equal false }
+    }
   end
 
+
+  describe 'is_para?' do
+    specify { is_para?([:para]).must_equal true }
+
+    [:ul, :ol, :code, :a, :h1, :h2, :h3, :h4, :h5, :h6].each {|c|
+      code = [c]
+      specify { is_para?(code).must_equal false }
+    }
+  end
   describe 'h1 "bold [bold heading]"' do
     let(:codes) { [[:h1, 'this is [bold heading]']] }
     let(:lparse) { ->(x){ text_parse_valve(x) } }

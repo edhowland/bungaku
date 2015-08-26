@@ -4,6 +4,10 @@ def is_heading? code
   [:h1, :h2, :h3, :h4, :h5, :h6].include? code[0]
 end
 
+def is_para? code
+  code[0] == :para
+end
+
 def is_list? code
   [:ul, :ol].include? code[0]
 end
