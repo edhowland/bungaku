@@ -16,11 +16,11 @@ describe 'text_format_valve' do
   end
 
   describe 'h1 "bold [bold heading]"' do
-    let(:codes) { [[:h1, 'this is  [bold heading]']] }
+    let(:codes) { [[:h1, 'this is [bold heading]']] }
     let(:lparse) { ->(x){ text_parse_valve(x) } }
     let(:chain) { lparse | ->(x){ text_format_valve(x) }; lparse }
     subject { chain.call_chain codes }
 
-    specify { subject.must_equal [[:h1, 'this is *heading']] }
+    specify { subject.must_equal [[:h1, 'this is **heading**']] }
   end
 end
