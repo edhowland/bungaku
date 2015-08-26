@@ -1,7 +1,7 @@
 # text_format_valve.rb - method text_format_valve
 
 def is_heading? code
-  code[0] == :h1
+  [:h1, :h2, :h3, :h4, :h5, :h6].include? code[0]
 end
 
 

@@ -8,7 +8,11 @@ describe 'text_format_valve' do
   end
 
   describe 'is_heading?' do
-    specify { is_heading?([:h1, []]).must_equal true }
+
+  [:h1, :h2, :h3, :h4, :h5, :h6].each {|h|
+      code = [h, []]
+      specify { is_heading?(code).must_equal true }
+    }
   end
 
   describe 'h1 "bold [bold heading]"' do
