@@ -68,4 +68,21 @@ describe 'text_format_valve' do
 
     specify { subject.must_equal [[:ol, ['note 1', '*note 2*', '**note 3**']] ] }
   end
+
+  describe 'is_para?' do
+    specify { is_para?([:para]).must_equal true }
+
+  [:h1, :h2, :h3, :h4, :h5, :h6, :a, :ul, :ol, :page].each {|c|
+      code = [c]
+      specify { is_para?(code).must_equal false }
+    }
+  end
+
+  describe 'para' do
+  let(:lgen) { ->(x){ MdGen.new.eval_string(x)} }
+    let(:chain) { lgen | ->(x){ text_parse_valve(x)} | ->(x){ text_format_valve(x) }; lgen }
+    subject { chain.call_chain "para '[bold bold][ital italic] plain'" }
+
+    specify { subject.must_equal [[:para, '**bold***italic* plain']] }
+  end
 end
