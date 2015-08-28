@@ -88,7 +88,6 @@ describe 'heading 5' do
 
   describe 'head, para and code' do
     subject {chain.call_chain("h2 'heading'; para 'brown fox'; code 'code'") }
-    #subject { @r.render [[:h2, 'heading'], [:para, [[:t, 'brown fox']]], [:code, 'code']] }  
 
     specify { puts subject; true }
     specify { subject.must_equal "## heading\n\nbrown fox\n\n\`\`\`\ncode\n\`\`\`\n\n" }
@@ -96,11 +95,6 @@ describe 'heading 5' do
 
   describe 'one complicated paragraph' do
     subject { chain.call_chain("para 'the [bold quick] brown fox'") }
-    #subject { @r.render [[:para, 
-      #[[:t, 'the '],
-       #[:bold, 'quick'], 
-        #[:t, ' brown fox']
-      #]]] }
 
     specify { subject.must_equal "the **quick** brown fox\n\n" }
   end
