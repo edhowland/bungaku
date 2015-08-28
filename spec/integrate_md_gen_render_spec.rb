@@ -6,7 +6,7 @@ describe 'Integration test: MdGen, GfmRender' do
   let(:gen) { MdGen.new }
   let(:rend) { GfmRender.new }
   let(:al) { ->(x){ gen.eval_string(x) } }
-  let(:chain) { al | ->(x){ text_parse_valve(x) } |  ->(x){ rend.render(x)}; al }
+  let(:chain) { al | ->(x){ text_parse_valve(x) } | ->(x){ text_format_valve(x)} | ->(x){ rend.render(x)}; al }
 
   describe 'simple code element' do
     subject { chain.call_chain " code 'code' " }

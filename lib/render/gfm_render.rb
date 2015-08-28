@@ -2,7 +2,6 @@
 
 class GfmRender
   def initialize
-#    @formatter = TextFormat.new
   end
 
   def heading count, string
@@ -34,7 +33,6 @@ def h4 string
   end
 
   def para string  #arr
-    #@formatter.format(arr) + "\n"
     string + "\n"
   end
 
