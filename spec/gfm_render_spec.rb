@@ -82,7 +82,6 @@ describe 'heading 5' do
 
   describe 'two elements : code, text' do
     subject { chain.call_chain("code 'code'; para 'text'") }
-    #subject { @r.render [[:code, 'code'], [:para, [[:t, 'text']]]] }
 
     specify {  subject.must_equal "\`\`\`\ncode\n\`\`\`\n\ntext\n\n" }
   end
