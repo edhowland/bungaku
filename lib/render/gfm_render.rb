@@ -65,6 +65,11 @@ def ol list
     r.table(attrs) { arr.each {|row| r << "\n"; r.tr { row.each {|col| r.td col  } } } } + "\n"
   end
 
+  def html_a attr_h
+    r = Builder::XmlMarkup.new 
+    r.a(attr_h)
+  end
+
 
   # filter :page from list, then run map/reduce on the rest
   def render codes

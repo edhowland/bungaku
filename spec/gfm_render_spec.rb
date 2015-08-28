@@ -173,4 +173,12 @@ end
     specify { expected = "<table width=\"100%\"></table>\n"
  subject.must_equal expected}
   end
+
+  describe 'html_a' do
+    let(:codes) { [[:html_a, {name: 'abcd'}]] }
+
+    subject { @r.render codes }
+
+    specify { subject.must_equal "<a name=\"abcd\"/>\n" }
+  end
 end
