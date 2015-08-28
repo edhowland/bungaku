@@ -4,7 +4,6 @@
 class Proc
   def |(prc)
     @chain = prc
-    self
   end  
 
   attr_reader :chain

@@ -6,5 +6,8 @@ class CodeCompiler
   end
 
   attr_reader :codes
-end
 
+  def clear
+    @codes = []
+  end
+end

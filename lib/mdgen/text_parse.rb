@@ -2,7 +2,7 @@
 
 class TextParse
   def initialize
-    @keywords = ['ital', 'bold']
+    @keywords = ['ital', 'bold', 'code', 'strike', 'quote', '=']
   end
   def lexer string
   string.split(/[\[\]]/).select {|e| !e.empty? }
@@ -13,6 +13,7 @@ class TextParse
     arr.map do |e|
       chunk = e.split(' ')
       if @keywords.member? chunk[0]
+      chunk[0] = 'equal' if chunk[0] == '='
       [chunk[0].to_sym, chunk[1..(-1)].join(' ')]
       else
         [:t, e]
@@ -23,5 +24,4 @@ class TextParse
   def parse string
     chunker lexer(string)
   end
-
 end

@@ -5,6 +5,8 @@ require_relative 'spec_helper'
 describe GfmRender do
   before { @r = GfmRender.new }
   let(:rend) { GfmRender.new }
+    let(:lgen) { ->(x){ MdGen.new.eval_string(x) } }
+    let(:chain) { lgen | ->(x){ text_parse_valve(x) } | ->(x){ text_format_valve(x) } | ->(x){ @r.render(x)}; lgen  }
 
   describe 'render empty codes' do
     subject { @r.render [] }
@@ -62,9 +64,9 @@ describe 'heading 5' do
   end
 
   describe 'paragraph must be separated by blank line' do
-    subject { @r.render [[:para, [[:t, 'text']]]] }
+    subject { chain.call_chain("para 'text'") }
 
-    specify { subject.must_equal "text\n\n" }
+    specify {   subject.must_equal "text\n\n" }
 
   end
 
@@ -79,25 +81,22 @@ describe 'heading 5' do
   end
 
   describe 'two elements : code, text' do
-    subject { @r.render [[:code, 'code'], [:para, [[:t, 'text']]]] }
+    subject { chain.call_chain("code 'code'; para 'text'") }
 
-    specify { subject.must_equal "\`\`\`\ncode\n\`\`\`\n\ntext\n\n" }
+    specify {  subject.must_equal "\`\`\`\ncode\n\`\`\`\n\ntext\n\n" }
   end
 
   describe 'head, para and code' do
-    subject { @r.render [[:h2, 'heading'], [:para, [[:t, 'brown fox']]], [:code, 'code']] }  
+    subject {chain.call_chain("h2 'heading'; para 'brown fox'; code 'code'") }
 
+    specify { puts subject; true }
     specify { subject.must_equal "## heading\n\nbrown fox\n\n\`\`\`\ncode\n\`\`\`\n\n" }
   end
 
   describe 'one complicated paragraph' do
-    subject { @r.render [[:para, 
-      [[:t, 'the '],
-       [:bold, 'quick'], 
-        [:t, ' brown fox']
-      ]]] }
+    subject { chain.call_chain("para 'the [bold quick] brown fox'") }
 
-    specify {subject.must_equal "the **quick** brown fox\n\n" }
+    specify { subject.must_equal "the **quick** brown fox\n\n" }
   end
 
 
