@@ -95,6 +95,10 @@ alias_method :numbers, :ordered_list
   self.instance_exec &blk
   end
 
+  def html_a anchor_h
+    @codes << [:html_a, anchor_h]
+  end
+
   def eval_string string
     self.instance_eval string
     @codes

@@ -107,4 +107,11 @@ describe 'MdGen: complicated examples (no text parsing)' do
 
     specify { subject.must_equal  [[:a, ['A link', 'http://example.com']]] }
   end
+
+  describe 'process: html_a' do
+    let(:anchor) { {name: 'my_anchor'} }
+    subject { gen.process { html_a({name: 'my_anchor'}) } }
+
+    specify { subject.must_equal [[:html_a,anchor]] }
+  end 
 end
